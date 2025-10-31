@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gift Surprise</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: radial-gradient(circle at top, #ffe6e6, #ffb3b3);
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .gift {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      perspective: 800px;
+      cursor: pointer;
+    }
+
+    .gift-box {
+      position: absolute;
+      bottom: 0;
+      width: 200px;
+      height: 160px;
+      background: linear-gradient(145deg, #ff4d6d, #c9184a);
+      border-radius: 5px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      overflow: visible; /* Allow things to come out */
+      z-index: 1;
+    }
+
+    .ribbon-vertical {
+      position: absolute;
+      width: 30px;
+      height: 100%;
+      background: #fff;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .ribbon-horizontal {
+      position: absolute;
+      height: 30px;
+      width: 100%;
+      background: #fff;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 60px;
+      background: linear-gradient(145deg, #ff4d6d, #c9184a);
+      border-radius: 5px 5px 0 0;
+      transform-origin: bottom center;
+      transition: transform 0.8s ease;
+      z-index: 3;
+    }
+
+    .bow {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.5rem;
+    }
+
+    /* Star outside the box so it's always visible */
+    .star {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translate(-50%, 150%) scale(0.1);
+      font-size: 3rem;
+      opacity: 0;
+      z-index: 2;
+      transition: transform 1.8s cubic-bezier(0.25, 1.25, 0.5, 1.1),
+                  opacity 1.5s ease;
+      filter: drop-shadow(0 0 20px #fff);
+    }
+
+    .open .lid {
+      transform: rotateX(-120deg);
+    }
+
+    .open .star {
+      transform: translate(-50%, -500%) scale(7);
+      opacity: 1;
+    }
+
+    .tag {
+      position: absolute;
+      top: -60px;
+      right: -30px;
+      width: 80px;
+      height: 40px;
+      background: #fff;
+      color: #ff4d6d;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transform: rotate(10deg);
+      font-weight: bold;
+      line-height: 40px;
+      text-align: center;
+      animation: swing 2s ease-in-out infinite alternate;
+      z-index: 4;
+    }
+
+    @keyframes swing {
+      from { transform: rotate(8deg); }
+      to { transform: rotate(-8deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="gift" onclick="openGift()">
+    <div class="lid">
+      <div class="bow">🎀</div>
+      <div class="tag">To: Eshaa 💌</div>
+    </div>
+    <div class="gift-box">
+      <div class="ribbon-vertical"></div>
+      <div class="ribbon-horizontal"></div>
+    </div>
+    <!-- Star placed outside so it's not hidden -->
+    <div class="star">🖕</div>
+  </div>
+
+  <script>
+    function openGift() {
+      document.querySelector(".gift").classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
